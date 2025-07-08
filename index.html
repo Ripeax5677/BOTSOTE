@@ -121,26 +121,55 @@ function login(){
 }
 
 window.onload = ()=>{
-  if(location.hash.includes("access_token")){
-    const token = location.hash.split("&")[0].split("=")[1];
-    fetch("https://discord.com/api/users/@me", { headers: {Authorization:"Bearer "+token} })
-    .then(r=>r.json()).then(u=>{
-      document.getElementById("user-info").innerText = `🧑 ${u.username}#${u.discriminator}`;
-      document.getElementById("user-section").classList.remove("hidden");
+  const hash = window.location.hash;
+  if (!hash.includes("access_token")) {
+    return; // Token nicht vorhanden – User muss sich einloggen
+  }
+
+  const token = new URLSearchParams(hash.substring(1)).get("access_token");
+  if (!token) {
+    alert("❌ Fehler beim Einloggen. Bitte erneut versuchen.");
+    return;
+  }
+
+  // Zeige Userdaten
+  fetch("https://discord.com/api/users/@me", {
+    headers: { Authorization: "Bearer " + token }
+  })
+  .then(r => r.json())
+  .then(u => {
+    if (!u || !u.username) {
+      alert("❌ Fehler beim Laden des Users. Bitte erneut einloggen.");
+      return;
+    }
+    document.getElementById("user-info").innerText = `🧑 ${u.username}#${u.discriminator}`;
+    document.getElementById("user-section").classList.remove("hidden");
+  });
+
+  // Lade Guilds
+  fetch("https://discord.com/api/users/@me/guilds", {
+    headers: { Authorization: "Bearer " + token }
+  })
+  .then(r => r.json())
+  .then(gs => {
+    const sel = document.getElementById("server-select");
+    if (!Array.isArray(gs)) {
+      alert("❌ Fehler beim Laden der Server. Stelle sicher, dass du welche besitzt.");
+      return;
+    }
+    gs.forEach(g => {
+      sel.innerHTML += `<option value="${g.name}">${g.name}</option>`;
     });
 
-    fetch("https://discord.com/api/users/@me/guilds", { headers: {Authorization:"Bearer "+token} })
-    .then(r=>r.json()).then(gs=>{
-      const sel=document.getElementById("server-select");
-      gs.forEach(g=> sel.innerHTML += `<option value="${g.name}">${g.name}</option>`);
-      document.getElementById("features-section").classList.remove("hidden");
-      document.getElementById("kits-section").classList.remove("hidden");
-      document.getElementById("hosting-section").classList.remove("hidden");
-      document.getElementById("order-section").classList.remove("hidden");
-    });
-    initUI();
-  }
+    // Zeige Auswahlbereiche
+    document.getElementById("features-section").classList.remove("hidden");
+    document.getElementById("kits-section").classList.remove("hidden");
+    document.getElementById("hosting-section").classList.remove("hidden");
+    document.getElementById("order-section").classList.remove("hidden");
+    initUI(); // Initialisiere Optionen
+  });
 };
+
 
 // Price calculation
 function updateTotal(){
