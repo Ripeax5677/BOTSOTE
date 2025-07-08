@@ -2,7 +2,7 @@
   "features": [
     {
       "name": "Ticket System",
-      "price": 1500000,
+      "price": 500000,
       "emoji": "\ud83c\udfab"
     },
     {
@@ -27,22 +27,22 @@
     },
     {
       "name": "Anti Spam System",
-      "price": 600000,
+      "price": 375000,
       "emoji": "\ud83d\udeab"
     },
     {
       "name": "Level System",
-      "price": 750000,
+      "price": 475000,
       "emoji": "\ud83d\udcc8"
     },
     {
       "name": "Auto Mod",
-      "price": 900000,
+      "price": 666000,
       "emoji": "\ud83d\udee1\ufe0f"
     },
     {
       "name": "Custom Commands",
-      "price": 300000,
+      "price": 500000,
       "emoji": "\u2699\ufe0f"
     },
     {
@@ -57,7 +57,7 @@
     },
     {
       "name": "Rotating Status",
-      "price": 250000,
+      "price": 30000,
       "emoji": "\ud83d\udd04"
     },
     {
@@ -406,7 +406,7 @@
     },
     {
       "name": "Active Developer Badge",
-      "price": 2500000,
+      "price": 250000,
       "emoji": "\ud83d\udcbb"
     },
     {
@@ -426,12 +426,12 @@
     },
     {
       "name": "Private Beta Access",
-      "price": 1000000,
+      "price": 300000,
       "emoji": "\ud83e\uddea"
     },
     {
       "name": "Custom Branding",
-      "price": 1500000,
+      "price": 500000,
       "emoji": "\ud83c\udfa8"
     },
     {
@@ -451,7 +451,7 @@
     },
     {
       "name": "\ud83d\udc22 Slow (7 Days)",
-      "multiplier": 0.8
+      "multiplier": 0.9
     }
   ]
 }
