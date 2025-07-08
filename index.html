@@ -1,174 +1,167 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Discord Bot Pricing</title>
-  <style>
-    body {
-      background-color: #1e1f2f;
-      color: #fff;
-      font-family: "Segoe UI", sans-serif;
-      margin: 0;
-      padding: 20px;
-    }
-    .container { max-width: 900px; margin: auto; }
-    h1, h2 { color: #f2f2f2; }
-    select, input, button {
-      background-color: #2c2f4a;
-      color: white;
-      border: 1px solid #444;
-      padding: 10px;
-      margin: 5px 0;
-      width: 100%;
-    }
-    button {
-      background-color: #5865f2;
-      border: none;
-      cursor: pointer;
-    }
-    button:hover { background-color: #4752c4; }
-    .section { margin-top: 30px; }
-    .order-summary {
-      background: #2c2f4a;
-      padding: 15px;
-      margin-top: 15px;
-      white-space: pre-wrap;
-    }
-  </style>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Discord Bot Order System</title>
+<style>
+  body {background:#1e1f22; color:#fff; font-family:sans-serif; margin:0; padding:20px;}
+  h1,h2,h3{color:#7289da;}
+  .hidden{display:none;}
+  .section{margin-bottom:30px;}
+  .item{background:#2c2f33; border-radius:5px; padding:10px; margin:5px 0;}
+  label{cursor:pointer;}
+  input[type=checkbox], select {margin-right:8px;}
+  .btn{background:#7289da;color:#fff;border:none;padding:10px 15px;border-radius:5px;cursor:pointer;}
+  .btn:hover{background:#5b6eae;}
+  .total{font-size:18px;font-weight:bold;margin-top:10px;}
+  .order-box{background:#2c2f33;border-radius:6px;padding:10px;white-space:pre-wrap;margin-top:10px;}
+</style>
 </head>
 <body>
-  <div class="container">
-    <h1>🤖 Discord Bot Pricing & Order</h1>
 
-    <!-- 🔐 Discord Login -->
-    <div class="section">
-      <button onclick="loginWithDiscord()">🔐 Login with Discord</button>
-      <p id="user-info"></p>
-      <select id="guilds" style="display:none;"></select>
-    </div>
+<h1>🤖 Discord Bot Order System</h1>
 
-    <!-- 🎯 Feature Auswahl -->
-    <div class="section">
-      <h2>💡 Choose Features</h2>
-      <label><input type="checkbox" class="feature" data-price="1500000"> 🎟️ Ticket System</label><br>
-      <label><input type="checkbox" class="feature" data-price="250000"> 👋 Welcome System</label><br>
-      <label><input type="checkbox" class="feature" data-price="500000"> 🎉 Giveaway System</label><br>
-      <label><input type="checkbox" class="feature" data-price="250000"> 🔁 Rotating Status</label><br>
-      <label><input type="checkbox" class="feature" data-price="200000"> 💬 Embeds on All Msgs</label><br>
+<!-- LOGIN -->
+<div id="login-section" class="section">
+  <button class="btn" onclick="login()">🔐 Login with Discord</button>
+</div>
 
-      <label><input type="checkbox" class="feature" data-price="25000"> ➕ Slash Commands (+50k)</label><br>
-    </div>
+<!-- USER+SERVER -->
+<div id="user-section" class="section hidden">
+  <p id="user-info"></p>
+  <select id="server-select"></select>
+</div>
 
-    <!-- ⚙️ Custom Commands -->
-    <div class="section">
-      <h2>⚙️ Custom Commands</h2>
-      <input id="customCommands" type="number" placeholder="How many custom commands? (100k each)" />
-      <small>💡 Suggestion: !rules, !verify, !ticket, !ping</small>
-    </div>
+<!-- FEATURES -->
+<div id="features-section" class="section hidden">
+  <h2>🧩 Features</h2>
+  <div id="features-list"></div>
+</div>
 
-    <!-- ☁️ Hosting -->
-    <div class="section">
-      <h2>☁️ Hosting</h2>
-      <select id="hosting">
-        <option value="0">🧪 Test Hosting (24h) – Free</option>
-        <option value="2500000">🔄 1 Month – 2.5m Donut $</option>
-        <option value="15000000">🗓️ 6 Months – 15m Donut $</option>
-      </select>
-    </div>
+<!-- KITS -->
+<div id="kits-section" class="section hidden">
+  <h2>📦 Kits (optional)</h2>
+  <div id="kits-list"></div>
+</div>
 
-    <!-- 🎁 Add-Ons -->
-    <div class="section">
-      <h2>🎁 Add-ons</h2>
-      <label><input type="checkbox" class="feature" data-price="25000"> 🛡️ Dev Badge (+25k)</label><br>
-      <label><input type="checkbox" class="feature" data-price="150000"> 🚫 No Footer (+150k)</label><br>
-      <label><input type="checkbox" class="feature" data-price="200000"> 🖋️ Custom Footer (+200k)</label><br>
-    </div>
+<!-- HOSTING -->
+<div id="hosting-section" class="section hidden">
+  <h2>☁️ Hosting Plan</h2>
+  <select id="hosting-select">
+    <option value="0" data-name="Test Hosting (24h)">🧪 Test Hosting – Free</option>
+    <option value="2500000" data-name="1 Month Hosting">📆 1 Month – 2.5m</option>
+    <option value="15000000" data-name="6 Months Hosting">📆 6 Months – 15m</option>
+  </select>
+</div>
 
-    <!-- 🧾 Order -->
-    <div class="section">
-      <button onclick="createOrder()">📦 Create Order</button>
-      <div class="order-summary" id="orderSummary"></div>
-    </div>
-  </div>
+<!-- TOTAL & ORDER -->
+<div id="order-section" class="section hidden">
+  <p class="total">💰 Total: <span id="total">0</span> Donut $ / ≈ <span id="ltc">0</span> LTC</p>
+  <button class="btn" onclick="createOrder()">📨 Create Order</button>
+  <div class="order-box" id="order-output"></div>
+</div>
 
-  <script>
-    const clientId = "YOUR_CLIENT_ID";
-    const redirectUri = "YOUR_REDIRECT_URI";
+<script>
+const CLIENT_ID = "YOUR_CLIENT_ID";
+const REDIRECT_URI = "https://bot-orders-swart.vercel.app/callback";
+const CONV = 0.3;
 
-    if (window.location.hash.includes("access_token")) {
-      const token = window.location.hash.split("&")[0].split("=")[1];
-      fetch("https://discord.com/api/users/@me", {
-        headers: { Authorization: "Bearer " + token }
-      })
-      .then(res => res.json())
-      .then(user => {
-        document.getElementById("user-info").innerText = `🧑 Logged in as: ${user.username}#${user.discriminator}`;
-        fetch("https://discord.com/api/users/@me/guilds", {
-          headers: { Authorization: "Bearer " + token }
-        })
-        .then(res => res.json())
-        .then(guilds => {
-          const select = document.getElementById("guilds");
-          select.style.display = "block";
-          guilds.forEach(g => {
-            let opt = document.createElement("option");
-            opt.value = g.name;
-            opt.text = g.name;
-            select.add(opt);
-          });
-        });
-      });
-    }
+// Feature definitions (add more as needed)
+const FEATURES = [
+  { id:"welcome", name:"👋 Welcome Message", price:250000 },
+  { id:"ticket", name:"🎫 Ticket System", price:1500000 },
+  { id:"giveaway", name:"🎉 Giveaways", price:500000 },
+  { id:"autorole", name:"🔁 Auto Role on Join", price:300000 },
+  { id:"logging", name:"🗒️ Join/Leave Logs", price:300000 },
+  { id:"automod", name:"🚫 AutoMod (basic)", price:400000 },
+  { id:"antispam", name:"🚨 Anti-Spam Filter", price:350000 },
+  { id:"verification", name:"✅ Verification System", price:1000000 },
+  { id:"levels", name:"📊 Leveling System", price:1000000 },
+  { id:"reactionroles", name:"🎛️ Reaction Roles", price:600000 },
+  { id:"polls", name:"🗳️ Poll System", price:400000 },
+  { id:"reminders", name:"⏰ Reminder System", price:300000 },
+  { id:"translator", name:"🌐 Chat Translator", price:500000 },
+  { id:"timer", name:"⏳ Timer/Countdown", price:300000 },
+  { id:"stickymessages", name:"📌 Sticky Messages", price:200000 },
+  { id:"setup", name:"⚙️ Auto Server Setup (channels & roles)", price:1200000 },
+  { id:"starboard", name:"⭐ Starboard System", price:400000 },
+  { id:"announcements", name:"📣 Announcement Command", price:300000 },
+  { id:"booster", name:"🎁 Booster Role Rewards", price:500000 },
+  { id:"eventsystem", name:"📅 Event System", price:750000 },
+];
 
-    function loginWithDiscord() {
-      const scope = "identify guilds";
-      const url = `https://discord.com/api/oauth2/authorize?client_id=${clientId}&redirect_uri=${encodeURIComponent(redirectUri)}&response_type=token&scope=${scope}`;
-      window.location.href = url;
-    }
+// Kit definitions
+const KITS = [
+  { id:"starter", name:"🟢 Starter Kit", price:1800000 },
+  { id:"security", name:"🛡️ Security Kit", price:1200000 },
+  { id:"modtool", name:"🛠️ Mod Toolkit", price:2500000 },
+  { id:"community", name:"🌐 Community Pack", price:3600000 },
+  { id:"autostart", name:"⚡ Auto-Setup Pack", price:1500000 },
+  { id:"premium", name:"✨ Premium Suite", price:5000000 },
+];
 
-    function createOrder() {
-      let total = 0;
-      let features = [];
+// Initialize UI
+function initUI(){
+  const fl=document.getElementById("features-list");
+  FEATURES.forEach(f=>{
+    fl.innerHTML += `<div class="item"><label><input type="checkbox" class="feature" data-id="${f.id}" data-price="${f.price}"> ${f.name} (+${(f.price/1e6).toFixed(3)}m)</label></div>`;
+  });
+  const kl=document.getElementById("kits-list");
+  KITS.forEach(k=>{
+    kl.innerHTML += `<div class="item"><label><input type="checkbox" class="kit" data-id="${k.id}" data-price="${k.price}"> ${k.name} (+${(k.price/1e6).toFixed(3)}m)</label></div>`;
+  });
+  document.querySelectorAll(".feature, .kit").forEach(el=>el.addEventListener("change", updateTotal));
+  document.getElementById("hosting-select").addEventListener("change", updateTotal);
+}
 
-      document.querySelectorAll(".feature").forEach(f => {
-        if (f.checked) {
-          total += Number(f.dataset.price);
-          features.push(f.parentElement.textContent.trim());
-        }
-      });
+// OAuth & data load
+function login(){
+  window.location = `https://discord.com/api/oauth2/authorize?client_id=${CLIENT_ID}&redirect_uri=${encodeURIComponent(REDIRECT_URI)}&response_type=token&scope=identify%20guilds`;
+}
 
-      const customCommands = Number(document.getElementById("customCommands").value || 0);
-      if (customCommands > 0) {
-        total += customCommands * 100000;
-        features.push(`🧩 ${customCommands}x Custom Commands`);
-      }
+window.onload = ()=>{
+  if(location.hash.includes("access_token")){
+    const token = location.hash.split("&")[0].split("=")[1];
+    fetch("https://discord.com/api/users/@me", { headers: {Authorization:"Bearer "+token} })
+    .then(r=>r.json()).then(u=>{
+      document.getElementById("user-info").innerText = `🧑 ${u.username}#${u.discriminator}`;
+      document.getElementById("user-section").classList.remove("hidden");
+    });
 
-      const hosting = Number(document.getElementById("hosting").value);
-      if (hosting > 0) {
-        total += hosting;
-        features.push(`☁️ Hosting Plan (${hosting.toLocaleString()} Donut $)`);
-      }
+    fetch("https://discord.com/api/users/@me/guilds", { headers: {Authorization:"Bearer "+token} })
+    .then(r=>r.json()).then(gs=>{
+      const sel=document.getElementById("server-select");
+      gs.forEach(g=> sel.innerHTML += `<option value="${g.name}">${g.name}</option>`);
+      document.getElementById("features-section").classList.remove("hidden");
+      document.getElementById("kits-section").classList.remove("hidden");
+      document.getElementById("hosting-section").classList.remove("hidden");
+      document.getElementById("order-section").classList.remove("hidden");
+    });
+    initUI();
+  }
+};
 
-      const username = document.getElementById("user-info").innerText || "Not logged in";
-      const guild = document.getElementById("guilds").value || "Not selected";
+// Price calculation
+function updateTotal(){
+  let total=0;
+  document.querySelectorAll(".feature:checked, .kit:checked").forEach(el=> total+=parseInt(el.dataset.price));
+  total+= parseInt(document.getElementById("hosting-select").value);
+  document.getElementById("total").innerText=total.toLocaleString();
+  document.getElementById("ltc").innerText=(total/1e6*CONV).toFixed(4);
+}
 
-      const ltc = (total / 1000000 * 0.3).toFixed(3);
+// Create order
+function createOrder(){
+  const user = document.getElementById("user-info").innerText;
+  const server = document.getElementById("server-select").value;
+  let lines = [`📦 New Bot Order`, user, `🌐 Server: ${server}`, `🧩 Selections:`];
+  document.querySelectorAll(".feature:checked, .kit:checked").forEach(el=> lines.push(`- ${el.parentNode.textContent.trim()}`));
+  lines.push(`☁️ Hosting: ${document.getElementById("hosting-select").selectedOptions[0].dataset.name}`);
+  lines.push(`💰 Total: ${document.getElementById("total").innerText} Donut $ / ≈ ${document.getElementById("ltc").innerText} LTC`);
+  document.getElementById("order-output").innerText = lines.join("\n");
+}
 
-      const summary = `
-📨 Discord User: ${username}
-📡 Server Name: ${guild}
-
-🎯 Selected Features:
-${features.map(f => "• " + f).join("\n")}
-
-💰 Total: ${total.toLocaleString()} Donut $
-🪙 LTC Equivalent: ${ltc} LTC
-
-📋 Copy this message and send it to the seller.
-      `;
-      document.getElementById("orderSummary").innerText = summary;
-    }
-  </script>
+</script>
 </body>
 </html>
