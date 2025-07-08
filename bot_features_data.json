@@ -1,0 +1,457 @@
+{
+  "features": [
+    {
+      "name": "Ticket System",
+      "price": 1500000,
+      "emoji": "\ud83c\udfab"
+    },
+    {
+      "name": "Welcomer System",
+      "price": 250000,
+      "emoji": "\ud83d\udc4b"
+    },
+    {
+      "name": "Giveaway Command",
+      "price": 500000,
+      "emoji": "\ud83c\udf89"
+    },
+    {
+      "name": "Auto Roles",
+      "price": 300000,
+      "emoji": "\ud83e\uddf7"
+    },
+    {
+      "name": "Verification System",
+      "price": 500000,
+      "emoji": "\u2705"
+    },
+    {
+      "name": "Anti Spam System",
+      "price": 600000,
+      "emoji": "\ud83d\udeab"
+    },
+    {
+      "name": "Level System",
+      "price": 750000,
+      "emoji": "\ud83d\udcc8"
+    },
+    {
+      "name": "Auto Mod",
+      "price": 900000,
+      "emoji": "\ud83d\udee1\ufe0f"
+    },
+    {
+      "name": "Custom Commands",
+      "price": 300000,
+      "emoji": "\u2699\ufe0f"
+    },
+    {
+      "name": "Welcome DMs",
+      "price": 200000,
+      "emoji": "\ud83d\udcec"
+    },
+    {
+      "name": "Rules Command",
+      "price": 100000,
+      "emoji": "\ud83d\udcdc"
+    },
+    {
+      "name": "Rotating Status",
+      "price": 250000,
+      "emoji": "\ud83d\udd04"
+    },
+    {
+      "name": "Server Setup Wizard",
+      "price": 1000000,
+      "emoji": "\ud83d\udd27"
+    },
+    {
+      "name": "Temp Channels",
+      "price": 700000,
+      "emoji": "\ud83c\udf99\ufe0f"
+    },
+    {
+      "name": "Poll Commands",
+      "price": 200000,
+      "emoji": "\ud83d\udcca"
+    },
+    {
+      "name": "Music Commands",
+      "price": 1200000,
+      "emoji": "\ud83c\udfb5"
+    },
+    {
+      "name": "Voice Events Logger",
+      "price": 350000,
+      "emoji": "\ud83c\udfa4"
+    },
+    {
+      "name": "Member Count Goal",
+      "price": 300000,
+      "emoji": "\ud83c\udfaf"
+    },
+    {
+      "name": "Auto Reactions",
+      "price": 300000,
+      "emoji": "\ud83e\udd16"
+    },
+    {
+      "name": "Auto Publish",
+      "price": 400000,
+      "emoji": "\ud83d\udce2"
+    },
+    {
+      "name": "Button Roles",
+      "price": 450000,
+      "emoji": "\ud83c\udf9b\ufe0f"
+    },
+    {
+      "name": "Dropdown Roles",
+      "price": 450000,
+      "emoji": "\ud83d\udce5"
+    },
+    {
+      "name": "Sticky Messages",
+      "price": 300000,
+      "emoji": "\ud83d\udccc"
+    },
+    {
+      "name": "AFK System",
+      "price": 300000,
+      "emoji": "\ud83d\ude34"
+    },
+    {
+      "name": "Boost Logger",
+      "price": 150000,
+      "emoji": "\ud83d\ude80"
+    },
+    {
+      "name": "Mod Mail",
+      "price": 800000,
+      "emoji": "\ud83d\udcec"
+    },
+    {
+      "name": "Feedback System",
+      "price": 600000,
+      "emoji": "\ud83d\udcac"
+    },
+    {
+      "name": "Remind Me",
+      "price": 200000,
+      "emoji": "\u23f0"
+    },
+    {
+      "name": "Timers",
+      "price": 200000,
+      "emoji": "\u23f3"
+    },
+    {
+      "name": "Suggestions",
+      "price": 450000,
+      "emoji": "\ud83d\udca1"
+    },
+    {
+      "name": "Daily Rewards",
+      "price": 500000,
+      "emoji": "\ud83c\udf81"
+    },
+    {
+      "name": "Economy System",
+      "price": 1000000,
+      "emoji": "\ud83d\udcb0"
+    },
+    {
+      "name": "Warn System",
+      "price": 400000,
+      "emoji": "\u26a0\ufe0f"
+    },
+    {
+      "name": "Ban Tracker",
+      "price": 350000,
+      "emoji": "\ud83d\udd28"
+    },
+    {
+      "name": "Message Logger",
+      "price": 500000,
+      "emoji": "\ud83d\udcd3"
+    },
+    {
+      "name": "Join/Leave Logs",
+      "price": 300000,
+      "emoji": "\ud83d\udcdd"
+    },
+    {
+      "name": "Emoji Stealer",
+      "price": 250000,
+      "emoji": "\ud83d\ude08"
+    },
+    {
+      "name": "Meme Commands",
+      "price": 200000,
+      "emoji": "\ud83e\udd23"
+    },
+    {
+      "name": "Fun Commands",
+      "price": 500000,
+      "emoji": "\ud83c\udfae"
+    },
+    {
+      "name": "Custom Prefix",
+      "price": 100000,
+      "emoji": "\ud83d\udd23"
+    },
+    {
+      "name": "Auto Backup",
+      "price": 1500000,
+      "emoji": "\ud83d\udcbe"
+    },
+    {
+      "name": "Raid Detection",
+      "price": 800000,
+      "emoji": "\ud83d\udd75\ufe0f"
+    },
+    {
+      "name": "Twitch Alerts",
+      "price": 400000,
+      "emoji": "\ud83d\udcfa"
+    },
+    {
+      "name": "YouTube Alerts",
+      "price": 400000,
+      "emoji": "\ud83d\udcf9"
+    },
+    {
+      "name": "Custom Join Image",
+      "price": 500000,
+      "emoji": "\ud83d\uddbc\ufe0f"
+    },
+    {
+      "name": "Captcha Verification",
+      "price": 600000,
+      "emoji": "\ud83d\udd10"
+    },
+    {
+      "name": "Private Ticket Categories",
+      "price": 300000,
+      "emoji": "\ud83d\udcc2"
+    },
+    {
+      "name": "Advanced Logging",
+      "price": 800000,
+      "emoji": "\ud83d\udce0"
+    },
+    {
+      "name": "Invite Tracker",
+      "price": 600000,
+      "emoji": "\ud83e\uddfe"
+    },
+    {
+      "name": "Leaderboard",
+      "price": 500000,
+      "emoji": "\ud83c\udfc6"
+    },
+    {
+      "name": "Reaction Roles",
+      "price": 400000,
+      "emoji": "\ud83d\udccc"
+    },
+    {
+      "name": "Game Stats Tracker",
+      "price": 1000000,
+      "emoji": "\ud83d\udcca"
+    },
+    {
+      "name": "Server Analytics",
+      "price": 1200000,
+      "emoji": "\ud83d\udcc8"
+    },
+    {
+      "name": "Twitter Feed",
+      "price": 500000,
+      "emoji": "\ud83d\udc26"
+    },
+    {
+      "name": "Reddit Feed",
+      "price": 500000,
+      "emoji": "\ud83d\udc7d"
+    },
+    {
+      "name": "Bot Mention Reply",
+      "price": 250000,
+      "emoji": "\ud83d\udcac"
+    },
+    {
+      "name": "FAQ Auto Replies",
+      "price": 300000,
+      "emoji": "\u2753"
+    }
+  ],
+  "kits": [
+    {
+      "name": "Starter Kit",
+      "price": 800000,
+      "emoji": "\ud83d\ude80"
+    },
+    {
+      "name": "Moderation Kit",
+      "price": 1200000,
+      "emoji": "\ud83d\udee1\ufe0f"
+    },
+    {
+      "name": "Community Kit",
+      "price": 1500000,
+      "emoji": "\ud83e\uddd1\u200d\ud83e\udd1d\u200d\ud83e\uddd1"
+    },
+    {
+      "name": "Streamer Kit",
+      "price": 1400000,
+      "emoji": "\ud83d\udcfa"
+    },
+    {
+      "name": "Fun Kit",
+      "price": 1000000,
+      "emoji": "\ud83c\udfb2"
+    },
+    {
+      "name": "Economy Kit",
+      "price": 1800000,
+      "emoji": "\ud83d\udcb8"
+    },
+    {
+      "name": "Gaming Kit",
+      "price": 1600000,
+      "emoji": "\ud83c\udfae"
+    },
+    {
+      "name": "Events Kit",
+      "price": 1300000,
+      "emoji": "\ud83c\udf8a"
+    },
+    {
+      "name": "Security Kit",
+      "price": 1500000,
+      "emoji": "\ud83d\udd12"
+    },
+    {
+      "name": "Verification Kit",
+      "price": 900000,
+      "emoji": "\u2714\ufe0f"
+    },
+    {
+      "name": "Logs Kit",
+      "price": 1200000,
+      "emoji": "\ud83e\uddfe"
+    },
+    {
+      "name": "Premium Kit",
+      "price": 2500000,
+      "emoji": "\ud83d\udc8e"
+    },
+    {
+      "name": "Boost Tracker Kit",
+      "price": 1000000,
+      "emoji": "\ud83d\ude80"
+    },
+    {
+      "name": "Giveaway Kit",
+      "price": 1100000,
+      "emoji": "\ud83c\udf81"
+    },
+    {
+      "name": "Utility Kit",
+      "price": 1000000,
+      "emoji": "\ud83d\udd27"
+    },
+    {
+      "name": "AFK System Kit",
+      "price": 800000,
+      "emoji": "\ud83d\udca4"
+    },
+    {
+      "name": "AutoMod Kit",
+      "price": 1300000,
+      "emoji": "\ud83d\udea8"
+    },
+    {
+      "name": "Full Server Setup",
+      "price": 3000000,
+      "emoji": "\u2699\ufe0f"
+    },
+    {
+      "name": "Advanced Welcome Kit",
+      "price": 1400000,
+      "emoji": "\ud83d\udc4b"
+    },
+    {
+      "name": "Max Pack",
+      "price": 5000000,
+      "emoji": "\ud83c\udf10"
+    }
+  ],
+  "extras": [
+    {
+      "name": "No Footer",
+      "price": 150000,
+      "emoji": "\ud83d\udeab"
+    },
+    {
+      "name": "Custom Footer",
+      "price": 200000,
+      "emoji": "\ud83d\udcc4"
+    },
+    {
+      "name": "DM Support",
+      "price": 300000,
+      "emoji": "\u2709\ufe0f"
+    },
+    {
+      "name": "Active Developer Badge",
+      "price": 2500000,
+      "emoji": "\ud83d\udcbb"
+    },
+    {
+      "name": "Auto Updates",
+      "price": 1000000,
+      "emoji": "\ud83d\udd04"
+    },
+    {
+      "name": "Premium Bot Role",
+      "price": 500000,
+      "emoji": "\ud83c\udfc5"
+    },
+    {
+      "name": "Setup Call",
+      "price": 800000,
+      "emoji": "\ud83d\udcde"
+    },
+    {
+      "name": "Private Beta Access",
+      "price": 1000000,
+      "emoji": "\ud83e\uddea"
+    },
+    {
+      "name": "Custom Branding",
+      "price": 1500000,
+      "emoji": "\ud83c\udfa8"
+    },
+    {
+      "name": "Secret Commands",
+      "price": 600000,
+      "emoji": "\ud83d\udd75\ufe0f"
+    }
+  ],
+  "deliveryOptions": [
+    {
+      "name": "\ud83d\ude80 Fast (24h)",
+      "multiplier": 1.5
+    },
+    {
+      "name": "\u23f1\ufe0f Normal (3 Days)",
+      "multiplier": 1.0
+    },
+    {
+      "name": "\ud83d\udc22 Slow (7 Days)",
+      "multiplier": 0.8
+    }
+  ]
+}
