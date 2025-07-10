@@ -1,199 +1,49 @@
+<!-- index.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Disco0rder | You discord bot seller shop</title>
+  <meta charset="UTF-8">
+  <title>🛒 Shop | Disco0rder</title>
   <style>
     body {
-      background-color: #2c2f33;
+      background: #2c2f33;
       color: white;
       font-family: 'Segoe UI', sans-serif;
-      padding: 20px;
+      text-align: center;
+      padding: 30px;
     }
-    h1, h2 {
+    h1 {
       color: #7289da;
     }
-    .hidden { display: none; }
-    .feature-group { margin-bottom: 20px; }
-    select, input[type="checkbox"] { margin-right: 10px; }
-    button {
-      background-color: #7289da;
-      color: white;
-      padding: 10px 20px;
-      border: none;
-      cursor: pointer;
-      font-weight: bold;
-    }
-    .order-box {
+    .category {
       background: #23272a;
-      padding: 15px;
-      margin-top: 20px;
-      white-space: pre-wrap;
+      margin: 15px auto;
+      padding: 20px;
+      width: 90%;
+      max-width: 500px;
       border-left: 4px solid #7289da;
+      border-radius: 6px;
+      transition: transform 0.2s;
+    }
+    .category:hover {
+      transform: scale(1.03);
+      cursor: pointer;
+    }
+    a {
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 18px;
     }
   </style>
 </head>
 <body>
-  <h1>🤖 Order Your Custom Discord Bot</h1>
+  <h1>🛍️ Welcome to Disco0rder's Shop</h1>
 
-  <div id="login-section">
-    <button onclick="loginWithDiscord()">🔐 Login with Discord</button>
-  </div>
-
-  <div id="main-section" class="hidden">
-    <h2>🧩 Select Your Server</h2>
-    <select id="serverSelect"></select>
-
-    <h2>✨ Select Features</h2>
-    <div id="features" class="feature-group"></div>
-
-    <h2>🧪 Select a Kit</h2>
-    <select id="kitSelect"></select>
-
-    <h2>➕ Extras</h2>
-    <div id="extras" class="feature-group"></div>
-
-    <h2>⏱️ Delivery Time</h2>
-    <select id="deliveryTime">
-      <option value="Fast">⚡ Fast</option>
-      <option value="Normal" selected>🚚 Normal</option>
-      <option value="Slow">🐢 Slow</option>
-    </select>
-
-    <h2>💰 Total</h2>
-    <p id="total">0 Donut $ / 0 $LTC/BTC</p>
-    <button onclick="generateOrder()">📝 Create Order</button>
-
-    <div id="orderOutput" class="order-box"></div>
-  </div>
-
-  <script>
-    const CLIENT_ID = "1392183941246746684";
-    const REDIRECT_URI = "https://bot-orders-swart.vercel.app/";
-    let accessToken = "";
-    let discordUser = {};
-
-    async function loginWithDiscord() {
-      const url = `https://discord.com/api/oauth2/authorize?client_id=${CLIENT_ID}&redirect_uri=${encodeURIComponent(REDIRECT_URI)}&response_type=token&scope=identify%20guilds`;
-      window.location.href = url;
-    }
-
-    function parseTokenFromUrl() {
-      if (window.location.hash) {
-        const hash = window.location.hash.substring(1);
-        const params = new URLSearchParams(hash);
-        accessToken = params.get("access_token");
-        if (accessToken) {
-          document.getElementById("login-section").classList.add("hidden");
-          document.getElementById("main-section").classList.remove("hidden");
-          loadUserData();
-        }
-      }
-    }
-
-    async function loadUserData() {
-      const [userRes, guildsRes] = await Promise.all([
-        fetch("https://discord.com/api/users/@me", { headers: { Authorization: `Bearer ${accessToken}` } }),
-        fetch("https://discord.com/api/users/@me/guilds", { headers: { Authorization: `Bearer ${accessToken}` } })
-      ]);
-      const user = await userRes.json();
-      const guilds = await guildsRes.json();
-      discordUser = user;
-
-      const select = document.getElementById("serverSelect");
-      guilds.filter(g => (g.owner)).forEach(g => {
-        const opt = document.createElement("option");
-        opt.value = g.id;
-        opt.textContent = g.name;
-        select.appendChild(opt);
-      });
-
-      await loadData();
-    }
-
-    async function loadData() {
-      const response = await fetch("bot_features_data.json");
-      const data = await response.json();
-
-      const featuresDiv = document.getElementById("features");
-      data.features.forEach(f => {
-        const label = document.createElement("label");
-        const checkbox = document.createElement("input");
-        checkbox.type = "checkbox";
-        checkbox.value = f.name;
-        checkbox.dataset.price = f.price;
-        label.appendChild(checkbox);
-        label.append(` ${f.emoji} ${f.name} (+${f.price.toLocaleString()} Donut $)`);
-        featuresDiv.appendChild(label);
-        featuresDiv.appendChild(document.createElement("br"));
-      });
-
-      const kits = document.getElementById("kitSelect");
-      data.kits.forEach(k => {
-        const opt = document.createElement("option");
-        opt.value = k.name;
-        opt.dataset.price = k.price;
-        opt.textContent = `${k.emoji} ${k.name} (+${k.price.toLocaleString()} Donut $)`;
-        kits.appendChild(opt);
-      });
-
-      const extrasDiv = document.getElementById("extras");
-      data.extras.forEach(e => {
-        const label = document.createElement("label");
-        const checkbox = document.createElement("input");
-        checkbox.type = "checkbox";
-        checkbox.value = e.name;
-        checkbox.dataset.price = e.price;
-        label.appendChild(checkbox);
-        label.append(` ${e.emoji} ${e.name} (+${e.price.toLocaleString()} Donut $)`);
-        extrasDiv.appendChild(label);
-        extrasDiv.appendChild(document.createElement("br"));
-      });
-
-      document.querySelectorAll("input[type=checkbox], select").forEach(e => {
-        e.addEventListener("change", updateTotal);
-      });
-    }
-
-    function updateTotal() {
-      let total = 0;
-      document.querySelectorAll("input[type=checkbox]:checked").forEach(e => {
-        total += parseInt(e.dataset.price || "0");
-      });
-      const kit = document.getElementById("kitSelect");
-      const selected = kit.options[kit.selectedIndex];
-      if (selected && selected.dataset.price) {
-        total += parseInt(selected.dataset.price);
-      }
-      const ltc = (total / 1e6 * 0.3).toFixed(4);
-      document.getElementById("total").textContent = `${total.toLocaleString()} Donut $ / ${ltc} LTC`;
-    }
-
-    function generateOrder() {
-      const server = document.getElementById("serverSelect").selectedOptions[0].textContent;
-      const features = Array.from(document.querySelectorAll("#features input:checked")).map(c => c.value);
-      const extras = Array.from(document.querySelectorAll("#extras input:checked")).map(c => c.value);
-      const kit = document.getElementById("kitSelect").selectedOptions[0].textContent;
-      const delivery = document.getElementById("deliveryTime").value;
-      const total = document.getElementById("total").textContent;
-
-      const msg = `Discord User: ${discordUser.username}#${discordUser.discriminator}
-Server Name: ${server}
-
-Selected Features:
-${features.join(", ")}
-
-Selected Kit: ${kit}
-Extras: ${extras.join(", ")}
-
-Delivery Time: ${delivery}
-Total Price: ${total}`;
-
-      document.getElementById("orderOutput").textContent = msg;
-    }
-
-    parseTokenFromUrl();
-  </script>
+  <div class="category"><a href="discord_bots.html">🤖 Discord Bots</a></div>
+  <div class="category"><a href="donutsmp.html">🌾 DonutSMP Shop</a></div>
+  <div class="category"><a href="ps_shops.html">🎮 PS99 / PSGO / PSX</a></div>
+  <div class="category"><a href="gag.html">🦝 GAG Items</a></div>
+  <div class="category"><a href="brainrot.html">🧠 Steal a Brainrot</a></div>
 </body>
 </html>
