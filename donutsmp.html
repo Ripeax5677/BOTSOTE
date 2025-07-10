@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>DonutSMP Shop</title>
+  <style>
+    body {
+      background: #2c2f33;
+      color: white;
+      font-family: 'Segoe UI', sans-serif;
+      padding: 30px;
+    }
+    h1 {
+      color: #43b581;
+      margin-bottom: 20px;
+    }
+    .item {
+      background: #23272a;
+      margin-bottom: 20px;
+      padding: 20px;
+      border-left: 4px solid #43b581;
+      border-radius: 6px;
+    }
+    .item h3 {
+      margin: 0;
+      font-size: 18px;
+    }
+    button {
+      margin-top: 10px;
+      background: #7289da;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      font-weight: bold;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <h1>🌾 DonutSMP Shop</h1>
+
+  <div class="item">
+    <h3>💰 1M Donut $ – 0.22€</h3>
+    <button onclick="buy('1M Donut $', 0.22)">Buy with PayPal</button>
+  </div>
+  <div class="item">
+    <h3>💀 Skeleton Spawner – 0.23€</h3>
+    <button onclick="buy('Skeleton Spawner', 0.23)">Buy with PayPal</button>
+  </div>
+  <div class="item">
+    <h3>🕊️ Elytra – 23€</h3>
+    <button onclick="buy('Elytra', 23)">Buy with PayPal</button>
+  </div>
+
+  <script>
+    function buy(item, price) {
+      const query = new URLSearchParams({
+        business: 'your-paypal-email@example.com',
+        item_name: item,
+        amount: price.toFixed(2),
+        currency_code: 'EUR'
+      }).toString();
+
+      const paypalUrl = `https://www.paypal.com/cgi-bin/webscr?cmd=_xclick&${query}`;
+      window.open(paypalUrl, '_blank');
+    }
+  </script>
+</body>
+</html>
